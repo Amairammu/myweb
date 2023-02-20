@@ -73,7 +73,7 @@
     </nav>
     <section>
       <div class="card">
-        <img src="https://picsum.photos/id/237/300/200" alt="Random Image">
+        <img src="https://scontent.fhyd1-5.fna.fbcdn.net/v/t31.18172-8/10353399_594128940694887_2855072550225834772_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=174925&_nc_ohc=gFe-VbZNZ3wAX_HQ64w&_nc_ht=scontent.fhyd1-5.fna&oh=00_AfBKLAvS_-tkgsTe3Npj5vfk42EiKam9mkrcW4xU0Mh84A&oe=641B2F50" alt="Random Image">
         <h2>Card Title 1</h2>
         <p>This is a description of card 1.</p>
       </div>

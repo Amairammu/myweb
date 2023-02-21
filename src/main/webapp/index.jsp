@@ -78,7 +78,7 @@
         <p>This is a description of card 1.</p>
       </div>
       <div class="card">
-        <img src="https://picsum.photos/id/238/300/200" alt="Random Image">
+        <img src="https://th.bing.com/th/id/OIP.fn0-3D-C4V_GYXTDGlBuVAHaEo?w=309&h=193&c=7&r=0&o=5&pid=1.7" alt="Random Image">
         <h2>Card Title 2</h2>
         <p>This is a description of card 2.</p>
       </div>

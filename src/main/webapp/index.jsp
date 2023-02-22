@@ -83,7 +83,7 @@
         <p>This is a description of card 2.</p>
       </div>
       <div class="card">
-        <img src="https://picsum.photos/id/239/300/200" alt="Random Image">
+        <img src="https://th.bing.com/th/id/OIP.0AjTBrBLp8pWwUooQF8VawHaFj?pid=ImgDet&rs=1" alt="Random Image">
         <h2>Card Title 3</h2>
         <p>This is a description of card 3.</p>
       </div>

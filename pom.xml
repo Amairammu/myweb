@@ -27,12 +27,12 @@
 	
 	<distributionManagement>
 		 <snapshotRepository>
-		    <id>developmentRepo</id>
+		    <id>nesuxRepo</id>
 		    <url>http://54.208.62.56:8081/repository/snapshot1/</url>
 		 </snapshotRepository>
 		
 		<repository>
-		    <id>developmentRepo</id>
+		    <id>nexusRepo</id>
 		    <url>http://54.208.62.56:8081/repository/release1/</url>
 		</repository>
   	</distributionManagement>

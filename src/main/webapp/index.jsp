@@ -1,100 +1,74 @@
-<html>
-  <head>
-    <title>My Awesome Webpage</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+    <title>Wanderlust Companion</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-      }
-      header {
-        background-color: #333;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        font-size: 30px;
-      }
-      nav {
-        background-color: #333;
-        overflow: hidden;
-      }
-      nav a {
-        float: left;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-      }
-      nav a:hover {
-        background-color: #ddd;
-        color: black;
-      }
-      section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        padding: 20px;
-      }
-      .card {
-        width: 300px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      }
-      .card img {
-        width: 100%;
-        height: 200px;
-      }
-      .card h2 {
-        font-size: 24px;
-        margin-bottom: 0;
-      }
-      .card p {
-        font-size: 18px;
-        color: #777;
-      }
-      footer {
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 20px;
-      }
+        body {
+            font-family: 'Courier New', monospace;
+            background-image: url('https://png.pngtree.com/back_origin_pic/03/88/06/20451a964fa12319a324f2e99aac9632.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        h1, p, label, button {
+            font-size: 18px;
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <h1>My Awesome Webpage</h1>
-    </header>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
-    <section>
-      <div class="card">
-        <img src="https://scontent.fhyd1-5.fna.fbcdn.net/v/t31.18172-8/10353399_594128940694887_2855072550225834772_o.jpg?_nc_cat=111&ccb=1-7&_nc_sid=174925&_nc_ohc=gFe-VbZNZ3wAX_HQ64w&_nc_ht=scontent.fhyd1-5.fna&oh=00_AfBKLAvS_-tkgsTe3Npj5vfk42EiKam9mkrcW4xU0Mh84A&oe=641B2F50" alt="Random Image">
-        <h2>Card Title 1</h2>
-        <p>This is a description of card 1.</p>
-      </div>
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.fn0-3D-C4V_GYXTDGlBuVAHaEo?w=309&h=193&c=7&r=0&o=5&pid=1.7" alt="Random Image">
-        <h2>Card Title 2</h2>
-        <p>This is a description of card 2.</p>
-      </div>
-      <div class="card">
-        <img src="https://th.bing.com/th/id/OIP.0AjTBrBLp8pWwUooQF8VawHaFj?pid=ImgDet&rs=1" alt="Random Image">
-        <h2>Card Title 3</h2>
-        <p>This is a description of card 3.</p>
-      </div>
-    </section>
-    <footer>
-      <p>&copy; 2021 My Awesome Webpage</p>
-    </footer>
-  </body>
+</head>
+<body class="bg-gray-200 min-h-screen">
+    <div class="container mx-auto p-4">
+        <h1 class="text-4xl text-center my-10">Wanderlust Companion</h1>
+        <form id="travelForm" class="bg-white rounded-lg p-6">
+            <div class="mb-4">
+                <label for="place" class="block mb-2">Place to travel:</label>
+                <input type="text" id="place" name="place" class="form-input w-full px-4 py-2 border rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label for="days" class="block mb-2">How many days:</label>
+                <input type="number" id="days" name="days" class="form-input w-full px-4 py-2 border rounded-lg" required>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Let the adventure begin!</button>
+        </form>
+        <div id="output" class="bg-white text-black mt-6 p-4 rounded-lg break-all leading-7"></div>
+        <footer class="text-center mt-8 text-black">
+            <a href="#" class="text-xl">Made with ❤️</a>
+        </footer>
+    </div>
+    <script>
+        const form = document.getElementById("travelForm");
+        const output = document.getElementById("output");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const place = form.elements["place"].value;
+            const days = form.elements["days"].value;
+            
+            const substitutedPrompt = `Create a personalized and unforgettable travel itinerary for ${place} for a duration of ${days} days, tailored to the traveler's interests, budget, and pace. Provide real-time recommendations, local insights, and must-visit attractions to make their journey truly memorable.`;
+            
+            console.log(substitutedPrompt);
+            output.textContent = '';
+            
+            const ws = new WebSocket(`wss://backend.buildpicoapps.com/ask_ai_streaming?app_id=box-begin&prompt=${encodeURIComponent(substitutedPrompt)}`);
+
+            ws.addEventListener("message", (event) => {
+                console.log(event.data);
+                output.innerText = `${output.innerText}${event.data}`;
+            });
+
+            ws.addEventListener("close", (event) => {
+                console.log("Connection closed", event.code, event.reason);
+                if (event.code != 1000) {
+                    alert("Oops, we ran into an error. Refresh the page and try again.");
+                }
+            });
+
+            ws.addEventListener("error", (error) => {
+              console.log('WebSocket error', error);
+              alert("Oops, we ran into an error. Refresh the page and try again.");
+            });
+        });
+    </script>
+</body>
 </html>
-This code uses basic HTML elements (header, nav, section, footer) and CSS to style the page with a dark background, white text, and a simple navigation menu. The main content section uses flexbox to display three cards with images and text. The page is responsive and adjusts to different screen sizes. Of course, this is just one example of a good looking webpage and there are many ways to design and style a page.
-
-
-
-
